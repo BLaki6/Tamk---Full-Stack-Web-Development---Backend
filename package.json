@@ -1,0 +1,14 @@
+{
+  "name": "movie-api",
+  "version": "1.0.0",
+  "description": "Movie API for Full Stack Web Development",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "morgan": "^1.12.1"
+  }
+}

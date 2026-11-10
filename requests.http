@@ -1,0 +1,88 @@
+### Get all movies
+GET http://localhost:3000/movies
+
+### Get one existing movie
+GET http://localhost:3000/movies/1
+
+### Get a missing movie
+GET http://localhost:3000/movies/999
+
+### Create a valid movie
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "title": "Arrival",
+  "year": 2016,
+  "genre": "Sci-Fi"
+}
+
+### Create an invalid movie (400)
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "title": "",
+  "year": "not a number"
+}
+
+### Replace a movie with PUT (all fields required)
+PUT http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "title": "Inception: Updated Edition",
+  "year": 2010,
+  "genre": "Sci-Fi"
+}
+
+### Invalid incomplete PUT (400)
+PUT http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "title": "Incomplete replacement"
+}
+
+### Partially update a movie with PATCH
+PATCH http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "year": 2011
+}
+
+### Invalid PATCH value (400)
+PATCH http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "year": 12
+}
+
+### Filter by genre
+GET http://localhost:3000/movies?genre=sci-fi
+
+### Filter by minimum year
+GET http://localhost:3000/movies?minYear=2000
+
+### Combine filters and sort
+GET http://localhost:3000/movies?genre=Sci-Fi&minYear=2000&sort=year
+
+### Sort alphabetically by title
+GET http://localhost:3000/movies?sort=title
+
+### Invalid minimum year (400)
+GET http://localhost:3000/movies?minYear=invalid
+
+### Invalid sort value (400)
+GET http://localhost:3000/movies?sort=rating
+
+### Delete an existing movie (204, empty response)
+DELETE http://localhost:3000/movies/1
+
+### Delete the same movie again (404)
+DELETE http://localhost:3000/movies/1
+
+### Unknown route (404 ROUTE_NOT_FOUND)
+GET http://localhost:3000/does-not-exist
